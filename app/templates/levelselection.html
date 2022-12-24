@@ -1,0 +1,55 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body class="bg-dark">
+  <div class="container-fluid mt-5">
+    <h1 class="text-center  text-white mb-5">Level Selection</h1>
+    <div class="row justify-content-center">
+      <div class="col-4 h-100">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <h2 class="card-title">Beginner</h2>
+            <p class="card-text">These levels are suitable for those who are new to yoga and are looking to build a
+              solid foundation in the practice.</p>
+            <img src="../static/images/beginner-yoga.jpg" alt="Beginner Yoga Image" width="300px" height="300px"
+              class="mx-auto d-block">
+            <div class="text-center mt-4">
+              <a href="{% url 'beginner' %}" class="btn btn-primary">Select</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 h-100">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <h2 class="card-title">Intermediate</h2>
+            <p class="card-text">These levels are suitable for those who have a good foundation in yoga and are looking
+              to take their practice to the next level.</p>
+            <img src="../static/images/intermediate-yoga.jpg" alt="Intermediate Yoga Image" width="300px" height="300px"
+              class="mx-auto d-block">
+            <div class="text-center mt-4">
+              <a href="{% url 'intermediate' %}" class="btn btn-primary">Select</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 h-100">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <h2 class="card-title">Expert</h2>
+            <p class="card-text">These levels are suitable for experienced yogis who are looking for a challenging and
+              advanced practice.</p>
+            <img src="../static/images/expert-yoga.jpg" alt="Expert Yoga Image" width="300px" height="300px"
+              class="mx-auto d-block">
+            <div class="text-center mt-4">
+              <a href="{% url 'expert' %}" class="btn btn-primary">Select</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
