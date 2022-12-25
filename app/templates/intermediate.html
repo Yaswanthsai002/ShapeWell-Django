@@ -1,36 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beginner</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .card {
+            border-radius: 25px;
+        }
+
+        .card img {
+            border-radius: 25%;
+            width: 300px;
+            height: 300px;
+        }
+
+        .card .btn {
+            border-radius: 25px;
+        }
+
+        .card .btn:hover {
+            color: #007bff;
+            background-color: #fff;
+        }
+
+        .card-text,
+        .card-title {
+            color: black;
+        }
+    </style>
 </head>
 
 <body class="bg-dark text-white">
-    <h1 class="text-center mt-3 mb-4">Intermediate</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <img src="../static/images/plank.jpg" alt="Plankpose" class="img-fluid"
-                    style="height: 500px; width: 500px;">
-                <h2>Plank</h2>
-                <button class="btn btn-primary btn-block">Get Knowledge</button>
+    <div class="container-fluid mt-4">
+        <h1 class="text-center  text-white mb-4">Intermediate</h1>
+        <div class="row justify-content-center">
+            <div class="col-4 h-100">
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <h2 class="card-title">Plank</h2>
+                        <img src="../static/images/plank.jpg" alt="Beginner Yoga Image" width="300px"
+                            height="300px" class="mx-auto d-block">
+                        <div class="text-center mt-4">
+                            <a href="{% url 'plank-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-4">
-                <img src="../static/images/cobra.jpg" alt="Cobrapose" class="img-fluid"
-                    style="height: 500px; width: 500px;">
-                <h2>Cobra</h2>
-                <button class="btn btn-primary btn-block">Get Knowledge</button>
+            <div class="col-4 h-100">
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <h2 class="card-title">Cobra</h2>
+                        <img src="../static/images/cobra.jpg" alt="Intermediate Yoga Image" width="300px"
+                            height="300px" class="mx-auto d-block">
+                        <div class="text-center mt-4">
+                            <a href="{% url 'cobra-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-4">
-                <img src="../static/images/triangle.jpg" alt="Trianglepose" class="img-fluid"
-                    style="height: 500px; width: 500px;">
-                <h2>Triangle</h2>
-                <button class="btn btn-primary btn-block">Get Knowledge</button>
+            <div class="col-4 h-100">
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <h2 class="card-title">Triangle</h2>
+
+                        <img src="../static/images/expert-yoga.jpg" alt="Expert Yoga Image" width="300px" height="300px"
+                            class="mx-auto d-block">
+                        <div class="text-center mt-4">
+                            <a href="{% url 'triangle-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

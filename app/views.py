@@ -147,3 +147,43 @@ def profile(request):
 
     # If the user has already entered their details, render the profile template
     return render(request, 'profile.html', {'user': request.user})
+
+@login_required
+def t_knowledge(request):
+    return render(request,'t-knowledge.html')
+
+@login_required
+def tree_knowledge(request):
+    return render(request,'tree-knowledge.html')
+
+@login_required
+def warrior2_knowledge(request):
+    return render(request,'warrior2-knowledge.html')
+
+@login_required
+def posedetection(request):
+    return render(request,'posedetection.html')
+
+@login_required
+def plank_knowledge(request):
+    return render(request,'plank-knowledge.html')
+
+@login_required
+def cobra_knowledge(request):
+    return render(request,'cobra-knowledge.html')
+
+@login_required
+def triangle_knowledge(request):
+    return render(request,'triangle-knowledge.html')
+
+@login_required
+def downdog_knowledge(request):
+    return render(request,'downdog-knowledge.html')
+
+@login_required
+def warrior1_knowledge(request):
+    return render(request,'warrior1-knowledge.html')
+
+@login_required
+def warrior3_knowledge(request):
+    return render(request,'warrior3-knowledge.html')
