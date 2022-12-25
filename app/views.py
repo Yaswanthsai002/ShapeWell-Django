@@ -3,7 +3,22 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.http import StreamingHttpResponse
 from .models import AppUser
+
+import math
+import cv2
+import mediapipe as mp
+import pyautogui
+from numba import jit, cuda
+import time
+
+# Initializing mediapipe pose class.
+mp_pose = mp.solutions.pose
+mp_holistic = mp.solutions.holistic
+
+# Initializing mediapipe drawing class, useful for annotation.
+mp_drawing = mp.solutions.drawing_utils
 
 
 def signup(request):
@@ -59,10 +74,10 @@ def signin(request):
 
         if user is not None:
             auth.login(request, user)
-            #messages.success(request, "Successfully logged in!")
+            # messages.success(request, "Successfully logged in!")
             return redirect('collect')
         else:
-            #messages.error(request, "Invalid username or password.")
+            # messages.error(request, "Invalid username or password.")
             return redirect('signin')
     else:
         return render(request, 'signin.html')
@@ -70,7 +85,7 @@ def signin(request):
 
 def signout(request):
     auth.logout(request)
-    #messages.success(request, "Successfully logged out!")
+    # messages.success(request, "Successfully logged out!")
     return redirect('signin')
 
 
@@ -148,42 +163,131 @@ def profile(request):
     # If the user has already entered their details, render the profile template
     return render(request, 'profile.html', {'user': request.user})
 
+
 @login_required
 def t_knowledge(request):
-    return render(request,'t-knowledge.html')
+    return render(request, 't-knowledge.html')
+
 
 @login_required
 def tree_knowledge(request):
-    return render(request,'tree-knowledge.html')
+    return render(request, 'tree-knowledge.html')
+
 
 @login_required
 def warrior2_knowledge(request):
-    return render(request,'warrior2-knowledge.html')
+    return render(request, 'warrior2-knowledge.html')
 
-@login_required
-def posedetection(request):
-    return render(request,'posedetection.html')
 
 @login_required
 def plank_knowledge(request):
-    return render(request,'plank-knowledge.html')
+    return render(request, 'plank-knowledge.html')
+
 
 @login_required
 def cobra_knowledge(request):
-    return render(request,'cobra-knowledge.html')
+    return render(request, 'cobra-knowledge.html')
+
 
 @login_required
 def triangle_knowledge(request):
-    return render(request,'triangle-knowledge.html')
+    return render(request, 'triangle-knowledge.html')
+
 
 @login_required
 def downdog_knowledge(request):
-    return render(request,'downdog-knowledge.html')
+    return render(request, 'downdog-knowledge.html')
+
 
 @login_required
 def warrior1_knowledge(request):
-    return render(request,'warrior1-knowledge.html')
+    return render(request, 'warrior1-knowledge.html')
+
 
 @login_required
 def warrior3_knowledge(request):
-    return render(request,'warrior3-knowledge.html')
+    return render(request, 'warrior3-knowledge.html')
+
+
+# @jit(target_backend='cuda')
+# Pose Estimation
+def gen_frames():
+    # Pose Estimation
+
+    # Setup Holistic Pose function for video.
+    pose_video = mp_holistic.Holistic(
+        static_image_mode=False, min_detection_confidence=0.5, model_complexity=0)
+
+    screen_width, screen_height = pyautogui.size()
+
+    # Initialize the VideoCapture object to read from the webcam.
+    camera_video = cv2.VideoCapture(0)
+    camera_video.set(3, 1280)
+    camera_video.set(4, 960)
+
+    # Initialize a resizable window.
+    # cv2.namedWindow('Pose Classification', cv2.WINDOW_NORMAL)
+
+    fps = []
+
+    # Initialize a variable to store the time of the previous frame.
+    time1 = 0
+
+    # Iterate until the webcam is accessed successfully.
+    while camera_video.isOpened():
+
+        # Read a frame.
+        ok, frame = camera_video.read()
+
+        # Check if frame is not read properly.
+        if not ok:
+
+            # Continue to the next iteration to read the next frame and ignore the empty camera frame.
+            continue
+
+        # Flip the frame horizontally for natural (selfie-view) visualization.
+        frame = cv2.flip(frame, 1)
+
+        # Get the width and height of the frame
+        frame_height, frame_width, _ = frame.shape
+
+        # Resize the frame while keeping the aspect ratio.
+        frame = cv2.resize(frame, (screen_width, screen_height))
+
+        # # Perform Pose landmark detection.
+        # frame, landmarks = detectPose(frame, pose_video, display=False)
+
+        # # Check if the landmarks are detected.
+        # if landmarks:
+
+        #     # Perform the Pose Classification.
+        #     frame, _ = classifyPose(landmarks, frame, display=False)
+
+        # Set the time for this frame to the current time.
+        time2 = time.time()
+
+        # Check if the difference between the previous and this frame time > 0 to avoid division by zero.
+        if (time2 - time1) > 0:
+
+            # Calculate the number of frames per second.
+            frames_per_second = 1.0 / (time2 - time1)
+
+            fps.append(int(frames_per_second))
+
+            # Write the calculated number of frames per second on the frame.
+            cv2.putText(frame, 'FPS: {}'.format(int(frames_per_second)),
+                        (0, 100), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
+
+        # Update the previous frame time to this frame time.
+        # As this frame will become previous frame in next iteration.
+        time1 = time2
+
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        # concat frame one by one and show result
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@login_required
+def posedetection(request):
+    return StreamingHttpResponse(gen_frames(), content_type="multipart/x-mixed-replace;boundary=frame")
