@@ -153,14 +153,10 @@ def collect(request):
 
 @login_required
 def profile(request):
-    # Check if the user has already entered their age, gender, height, and weight
     if not request.user.age or not request.user.gender or not request.user.height or not request.user.weight:
-        # If the user has not entered their details yet, redirect to the collect page
         return redirect('collect')
     else:
         return redirect('levelselection')
-
-    # If the user has already entered their details, render the profile template
     return render(request, 'profile.html', {'user': request.user})
 
 
@@ -291,3 +287,7 @@ def gen_frames():
 @login_required
 def posedetection(request):
     return StreamingHttpResponse(gen_frames(), content_type="multipart/x-mixed-replace;boundary=frame")
+
+@login_required
+def result(request):
+    return render(request, 'posedetection.html')

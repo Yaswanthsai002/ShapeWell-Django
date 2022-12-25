@@ -20,5 +20,6 @@ urlpatterns = [
     path('warrior3-knowledge/', views.warrior3_knowledge, name='warrior3-knowledge'),
     path('triangle-knowledge/', views.triangle_knowledge, name='triangle-knowledge'),
     path('profile/', views.profile, name='profile'),
-    path('posedetection/', views.posedetection, name='posedetection')
+    path('posedetection/', views.posedetection, name='posedetection'),
+    path('result/', views.result, name='result')
 ]
