@@ -1,11 +1,33 @@
 <html>
+
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    .card {
+      border-radius: 25px;
+    }
+
+    .card img {
+      border-radius: 25%;
+      width: 300px;
+      height: 300px;
+    }
+
+    .card .btn {
+      border-radius: 25px;
+    }
+
+    .card .btn:hover {
+      color: #007bff;
+      background-color: #fff;
+    }
+  </style>
 </head>
-<body class="bg-dark">
-  <div class="container-fluid mt-5">
-    <h1 class="text-center  text-white mb-5">Level Selection</h1>
+
+<body class="bg-dark text-white">
+  <div class="container-fluid mt-4">
+    <h1 class="text-center  text-white mb-4">Level Selection</h1>
     <div class="row justify-content-center">
       <div class="col-4 h-100">
         <div class="card mb-3">
@@ -26,7 +48,7 @@
           <div class="card-body text-center">
             <h2 class="card-title">Intermediate</h2>
             <p class="card-text">These levels are suitable for those who have a good foundation in yoga and are looking
-              to take their practice to the next level.</p>
+              for next level.</p>
             <img src="../static/images/intermediate-yoga.jpg" alt="Intermediate Yoga Image" width="300px" height="300px"
               class="mx-auto d-block">
             <div class="text-center mt-4">
@@ -52,4 +74,5 @@
     </div>
   </div>
 </body>
+
 </html>
