@@ -205,7 +205,6 @@ def warrior3_knowledge(request):
     return render(request, 'warrior3-knowledge.html')
 
 
-# @jit(target_backend='cuda')
 # Pose Estimation
 def gen_frames():
     # Pose Estimation
@@ -220,9 +219,6 @@ def gen_frames():
     camera_video = cv2.VideoCapture(0)
     camera_video.set(3, 1280)
     camera_video.set(4, 960)
-
-    # Initialize a resizable window.
-    # cv2.namedWindow('Pose Classification', cv2.WINDOW_NORMAL)
 
     fps = []
 
