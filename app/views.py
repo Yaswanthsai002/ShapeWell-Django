@@ -207,13 +207,11 @@ def warrior3_knowledge(request):
 
 # Pose Estimation
 def gen_frames():
-    # Pose Estimation
-
     # Setup Holistic Pose function for video.
     pose_video = mp_holistic.Holistic(
         static_image_mode=False, min_detection_confidence=0.5, model_complexity=0)
 
-    screen_width, screen_height = pyautogui.size()
+    # screen_width, screen_height = pyautogui.size()
 
     # Initialize the VideoCapture object to read from the webcam.
     camera_video = cv2.VideoCapture(0)
@@ -244,7 +242,7 @@ def gen_frames():
         frame_height, frame_width, _ = frame.shape
 
         # Resize the frame while keeping the aspect ratio.
-        frame = cv2.resize(frame, (screen_width, screen_height))
+        # frame = cv2.resize(frame, (screen_width, screen_height))
 
         # # Perform Pose landmark detection.
         # frame, landmarks = detectPose(frame, pose_video, display=False)
