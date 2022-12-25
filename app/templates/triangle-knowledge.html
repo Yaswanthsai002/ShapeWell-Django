@@ -1,12 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triangle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        /* Add any custom styles here */
+        .row {
+            display: flex;
+        }
+
+        .video-container,
+        .text-container {
+            flex: 1;
+            margin: 75px;
+        }
+
+        .text-container p {
+            font-size: 18px;
+        }
+
+        .container .btn:hover {
+            color: #007bff;
+            background-color: #fff;
+        }
+    </style>
 </head>
-<body>
-    <h1>Triangle Knowledge</h1>
+
+<body class="bg-dark text-white">
+    <div class="container-fluid h-100">
+        <div class="row h-50">
+            <div class="col-12 p-0">
+                <h1 class="text-center mt-5">Triangle Pose Tutorial</h1>
+            </div>
+        </div>
+        <div class="row d-flex">
+            <div class="col-12 col-md-6 p-0 video-container ml-5">
+                <!-- Place your video in a styled container -->
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/S6gB0QHbWFE?start=3"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="col-12 col-md-6 p-4 text-container mr-5">
+                <!-- Add the benefits and procedure of the asana here -->
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod, metus a faucibus
+                    viverra,
+                    diam metus vehicula justo, nec malesuada lacus risus at risus. In hac habitasse platea dictumst.
+                    Vivamus ullamcorper, neque in congue feugiat, velit velit rhoncus lectus, ut pellentesque lacus
+                    erat
+                    a ligula. Proin euismod, urna eu tempus dignissim, nisl nisi faucibus lacus, non dignissim nisi
+                    nibh
+                    et massa. Nunc et fermentum nisl, sed ultricies neque. Morbi tempus nisi sed suscipit pretium.
+                    Proin
+                    venenatis elit quis enim elementum, quis aliquam leo condimentum. Suspendisse vitae nulla a diam
+                    pretium tincidunt. Nulla facilisi.</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="{% url 'beginner' %}" class="btn btn-primary btn-lg mx-auto">Start</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
