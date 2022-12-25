@@ -89,27 +89,22 @@ def signout(request):
     return redirect('signin')
 
 
-@login_required
 def levelselection(request):
     return render(request, 'levelselection.html')
 
 
-@login_required
 def beginner(request):
     return render(request, 'beginner.html')
 
 
-@login_required
 def intermediate(request):
     return render(request, 'intermediate.html')
 
 
-@login_required
 def expert(request):
     return render(request, 'expert.html')
 
 
-@login_required
 def collect(request):
 
     # Check if the user has already entered their age, gender, height, and weight
@@ -151,7 +146,6 @@ def collect(request):
         return render(request, 'collectdetails.html')
 
 
-@login_required
 def profile(request):
     if not request.user.age or not request.user.gender or not request.user.height or not request.user.weight:
         return redirect('collect')
@@ -160,47 +154,38 @@ def profile(request):
     return render(request, 'profile.html', {'user': request.user})
 
 
-@login_required
 def t_knowledge(request):
     return render(request, 't-knowledge.html')
 
 
-@login_required
 def tree_knowledge(request):
     return render(request, 'tree-knowledge.html')
 
 
-@login_required
 def warrior2_knowledge(request):
     return render(request, 'warrior2-knowledge.html')
 
 
-@login_required
 def plank_knowledge(request):
     return render(request, 'plank-knowledge.html')
 
 
-@login_required
 def cobra_knowledge(request):
     return render(request, 'cobra-knowledge.html')
 
 
-@login_required
 def triangle_knowledge(request):
     return render(request, 'triangle-knowledge.html')
 
 
-@login_required
 def downdog_knowledge(request):
     return render(request, 'downdog-knowledge.html')
 
 
-@login_required
 def warrior1_knowledge(request):
     return render(request, 'warrior1-knowledge.html')
 
 
-@login_required
 def warrior3_knowledge(request):
     return render(request, 'warrior3-knowledge.html')
 
@@ -278,10 +263,5 @@ def gen_frames():
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
-@login_required
 def posedetection(request):
     return StreamingHttpResponse(gen_frames(), content_type="multipart/x-mixed-replace;boundary=frame")
-
-@login_required
-def result(request):
-    return render(request, 'posedetection.html')

@@ -21,5 +21,4 @@ urlpatterns = [
     path('triangle-knowledge/', views.triangle_knowledge, name='triangle-knowledge'),
     path('profile/', views.profile, name='profile'),
     path('posedetection/', views.posedetection, name='posedetection'),
-    path('result/', views.result, name='result')
 ]
