@@ -192,7 +192,7 @@ def warrior3_knowledge(request):
 
 # Pose Estimation
 def gen_frames():
-    
+
     # Setup Holistic Pose function for video.
     pose_video = mp_holistic.Holistic(
         static_image_mode=False, min_detection_confidence=0.5, model_complexity=2)
@@ -201,14 +201,12 @@ def gen_frames():
 
     # Initialize the VideoCapture object to read from the webcam.
     camera_video = cv2.VideoCapture(0)
-    # camera_video.set(3, 1280)
-    # camera_video.set(4, 960)
 
     start_time = time()
 
     # Initialize a variable to store the number of frames processed.
     num_frames = 0
-    
+
     # Iterate until the webcam is accessed successfully.
     while camera_video.isOpened():
 
@@ -224,7 +222,6 @@ def gen_frames():
         # Flip the frame horizontally for natural (selfie-view) visualization.
         frame = cv2.flip(frame, 1)
 
-
         # Resize the frame.
         # frame = cv2.resize(frame, (screen_width, screen_height))
 
@@ -237,7 +234,6 @@ def gen_frames():
         #     # Perform the Pose Classification.
         #     frame, _ = classifyPose(landmarks, frame)
 
-
         # Increment the number of frames processed.
         num_frames += 1
 
@@ -247,8 +243,9 @@ def gen_frames():
         # Calculate the frames per second.
         fps = num_frames / elapsed_time
 
-        # Write the calculated number of frames per second on the frame. 
-        cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
+        # Write the calculated number of frames per second on the frame.
+        cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
+                    cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
 
         ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
@@ -259,6 +256,6 @@ def gen_frames():
 def posedetection(request):
     return StreamingHttpResponse(gen_frames(), content_type="multipart/x-mixed-replace;boundary=frame")
 
+
 def result(request):
-    screen_width, screen_height = pyautogui.size()
-    return render(request, 'posedetection.html', {'scree_widdth':screen_width, 'screen_height':screen_height})
+    return render(request, 'posedetection.html')
