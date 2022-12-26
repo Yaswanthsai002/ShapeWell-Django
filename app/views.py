@@ -10,7 +10,6 @@ import math
 import cv2
 import mediapipe as mp
 import pyautogui
-from numba import jit, cuda
 from time import time
 
 # Initializing mediapipe pose class.
@@ -189,7 +188,6 @@ def warrior1_knowledge(request):
 def warrior3_knowledge(request):
     return render(request, 'warrior3-knowledge.html')
 
-@jit(target_backend='cuda')
 @login_required
 # Pose Estimation
 def gen_frames():
