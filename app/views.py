@@ -190,7 +190,7 @@ def warrior3_knowledge(request):
 
 @login_required
 # Pose Estimation
-def gen_frames():
+def gen_frames(request):
 
     # Setup Holistic Pose function for video.
     pose_video = mp_holistic.Holistic(
@@ -253,7 +253,7 @@ def gen_frames():
 
 @login_required
 def posedetection(request):
-    return StreamingHttpResponse(gen_frames(), content_type="multipart/x-mixed-replace;boundary=frame")
+    return StreamingHttpResponse(gen_frames(request), content_type="multipart/x-mixed-replace;boundary=frame")
 
 @login_required
 def result(request):
