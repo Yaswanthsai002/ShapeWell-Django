@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.http import StreamingHttpResponse
 from .models import AppUser
@@ -73,10 +73,10 @@ def signin(request):
 
         if user is not None:
             auth.login(request, user)
-            # messages.success(request, "Successfully logged in!")
+            messages.success(request, "Successfully logged in!")
             return redirect('collect')
         else:
-            # messages.error(request, "Invalid username or password.")
+            messages.error(request, "Invalid username or password.")
             return redirect('signin')
     else:
         return render(request, 'signin.html')
@@ -84,7 +84,7 @@ def signin(request):
 @login_required
 def signout(request):
     auth.logout(request)
-    # messages.success(request, "Successfully logged out!")
+    messages.success(request, "Successfully logged out!")
     return redirect('signin')
 
 @login_required
