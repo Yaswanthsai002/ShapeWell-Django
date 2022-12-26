@@ -265,3 +265,6 @@ def gen_frames():
 
 def posedetection(request):
     return StreamingHttpResponse(gen_frames(), content_type="multipart/x-mixed-replace;boundary=frame")
+
+def result(request):
+    return render(request, 'posedetection.html')
