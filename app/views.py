@@ -200,8 +200,8 @@ def gen_frames():
 
     # Initialize the VideoCapture object to read from the webcam.
     camera_video = cv2.VideoCapture(0)
-    camera_video.set(3, 1280)
-    camera_video.set(4, 960)
+    # camera_video.set(3, 1280)
+    # camera_video.set(4, 960)
 
     fps = []
 
