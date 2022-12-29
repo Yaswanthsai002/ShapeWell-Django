@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import StreamingHttpResponse
 from .models import AppUser
 
-import math
+
 import cv2
 import mediapipe as mp
 import pyautogui
