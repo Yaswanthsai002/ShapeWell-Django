@@ -99,8 +99,8 @@ def intermediate(request):
     return render(request, 'intermediate.html')
 
  
-def expert(request):
-    return render(request, 'expert.html')
+def advanced(request):
+    return render(request, 'advanced.html')
 
  
 def collect(request):
@@ -149,11 +149,12 @@ def profile(request):
         return redirect('collect')
     else:
         return redirect('levelselection')
+    
     return render(request, 'profile.html', {'user': request.user})
 
  
-def t_knowledge(request):
-    return render(request, 't-knowledge.html')
+def warrior1_knowledge(request):
+    return render(request, 'warrior1-knowledge.html')
 
  
 def tree_knowledge(request):
@@ -186,6 +187,9 @@ def warrior1_knowledge(request):
  
 def warrior3_knowledge(request):
     return render(request, 'warrior3-knowledge.html')
+
+def goddess_knowledge(request):
+    return render(request, 'goddess-knowledge.html')
 
  
 # Pose Estimation

@@ -22,7 +22,9 @@
       color: #007bff;
       background-color: #fff;
     }
-    .card-text, .card-title{
+
+    .card-text,
+    .card-title {
       color: black;
     }
   </style>
@@ -35,23 +37,11 @@
       <div class="col-4 h-100">
         <div class="card mb-3">
           <div class="card-body text-center">
-            <h2 class="card-title">T</h2>
-            <img src="../static/images/" alt="T pose Image" width="300px" height="300px"
+            <h2 class="card-title">Warrior 1</h2>
+            <img src="../static/images/warrior1.jpg" alt="warrior1 pose Image" width="300px" height="300px"
               class="mx-auto d-block">
             <div class="text-center mt-4">
-              <a href="{% url 't-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-4 h-100">
-        <div class="card mb-3">
-          <div class="card-body text-center">
-            <h2 class="card-title">Tree</h2>
-            <img src="../static/images/treepose.jpg" alt="Tree Pose Image" width="300px" height="300px"
-              class="mx-auto d-block">
-            <div class="text-center mt-4">
-              <a href="{% url 'tree-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
+              <a href="{% url 'warrior1-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>
         </div>
@@ -64,6 +54,18 @@
               class="mx-auto d-block">
             <div class="text-center mt-4">
               <a href="{% url 'warrior2-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 h-100">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <h2 class="card-title">Cobra</h2>
+            <img src="../static/images/cobra.jpg" alt="Cobra Pose Image" width="300px" height="300px"
+              class="mx-auto d-block">
+            <div class="text-center mt-4">
+              <a href="{% url 'cobra-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>
         </div>

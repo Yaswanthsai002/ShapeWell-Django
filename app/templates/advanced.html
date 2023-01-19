@@ -30,18 +30,16 @@
 
 <body class="bg-dark text-white">
   <div class="container-fluid mt-4">
-    <h1 class="text-center  text-white mb-4">Level Selection</h1>
+    <h1 class="text-center  text-white mb-4">Beginner</h1>
     <div class="row justify-content-center">
       <div class="col-4 h-100">
         <div class="card mb-3">
           <div class="card-body text-center">
-            <h2 class="card-title">Beginner</h2>
-            <p class="card-text">These levels are suitable for those who are new to yoga and are looking to build a
-              solid foundation in the practice.</p>
-            <img src="../static/images/warrior1.jpg" alt="Beginner Yoga Image" width="300px" height="300px"
+            <h2 class="card-title">Downdog</h2>
+            <img src="../static/images/downdog.jpg" alt="Downdog pose Image" width="300px" height="300px"
               class="mx-auto d-block">
             <div class="text-center mt-4">
-              <a href="{% url 'beginner' %}" class="btn btn-primary">Select</a>
+              <a href="{% url 'downdog-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>
         </div>
@@ -49,13 +47,11 @@
       <div class="col-4 h-100">
         <div class="card mb-3">
           <div class="card-body text-center">
-            <h2 class="card-title">Intermediate</h2>
-            <p class="card-text">These levels are suitable for those who have a good foundation in yoga and are looking
-              for next level.</p>
-            <img src="../static/images/plank.jpg" alt="Intermediate Yoga Image" width="300px" height="300px"
+            <h2 class="card-title">Triangle</h2>
+            <img src="../static/images/triangle.jpg" alt="Warrior1 Pose Image" width="300px" height="300px"
               class="mx-auto d-block">
             <div class="text-center mt-4">
-              <a href="{% url 'intermediate' %}" class="btn btn-primary">Select</a>
+              <a href="{% url 'triangle-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>
         </div>
@@ -63,13 +59,11 @@
       <div class="col-4 h-100">
         <div class="card mb-3">
           <div class="card-body text-center">
-            <h2 class="card-title">Advanced</h2>
-            <p class="card-text">These levels are suitable for experienced yogis who are looking for a challenging and
-              advanced practice.</p>
-            <img src="../static/images/triangle.jpg" alt="Advanced Yoga Image" width="300px" height="300px"
+            <h2 class="card-title">Warrior3</h2>
+            <img src="../static/images/warrior3.jpg" alt="Warrior3 Pose Image" width="300px" height="300px"
               class="mx-auto d-block">
             <div class="text-center mt-4">
-              <a href="{% url 'advanced' %}" class="btn btn-primary">Select</a>
+              <a href="{% url 'warrior3-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>
         </div>
