@@ -18,8 +18,13 @@ mp_holistic = mp.solutions.holistic
 # Initializing mediapipe drawing class, useful for annotation.
 mp_drawing = mp.solutions.drawing_utils
 
+def blog(request):
+    return render(request, 'blog.html')
 
-def signup(request):
+def type_of_user(request):
+    return render(request, 'type_of_user.html')
+
+def user_signup(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -61,10 +66,10 @@ def signup(request):
         messages.success(request, "Please signin to continue.")
         return redirect('signin')
     else:
-        return render(request, 'signup.html')
+        return render(request, 'user_signup.html')
 
 
-def signin(request):
+def user_signin(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -78,7 +83,129 @@ def signin(request):
             messages.error(request, "Invalid username or password.")
             return redirect('signin')
     else:
-        return render(request, 'signin.html')
+        return render(request, 'user_signin.html')
+
+def nutritionist_signup(request):
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        user_name = request.POST['user_name']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        # Check that the username is unique
+        if AppUser.objects.filter(username=user_name).exists():
+            messages.error(
+                request, "A user with that username already exists.")
+
+        # Check that the email is unique
+        if AppUser.objects.filter(email=email).exists():
+            messages.error(request, "A user with that email already exists.")
+
+        # Check that the password and confirm password match
+        if password != confirm_password:
+            messages.error(request, "The passwords do not match.")
+
+        # Check that the password is at least 8 characters long
+        if len(password) < 8:
+            messages.error(
+                request, "The password must be at least 8 characters long.")
+
+        # Check that the username and password are alphanumeric
+        if not user_name.isalnum():
+            messages.error(request, "The username must be alphanumeric.")
+        if not password.isalnum():
+            messages.error(request, "The password must be alphanumeric.")
+
+        # If there are no errors, create the user and log them in
+        user = AppUser.objects.create_user(
+            first_name=first_name, last_name=last_name, email=email, username=user_name, password=password)
+        user.save()
+        auth.login(request, user)
+        messages.success(request, "Account created successfully!")
+        messages.success(request, "Please signin to continue.")
+        return redirect('signin')
+    else:
+        return render(request, 'nutritionist_signup.html')
+
+
+def nutritionist_signin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, "Successfully logged in!")
+            return redirect('collect')
+        else:
+            messages.error(request, "Invalid username or password.")
+            return redirect('signin')
+    else:
+        return render(request, 'nutritionist_signin.html')
+
+def physician_signup(request):
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        user_name = request.POST['user_name']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        # Check that the username is unique
+        if AppUser.objects.filter(username=user_name).exists():
+            messages.error(
+                request, "A user with that username already exists.")
+
+        # Check that the email is unique
+        if AppUser.objects.filter(email=email).exists():
+            messages.error(request, "A user with that email already exists.")
+
+        # Check that the password and confirm password match
+        if password != confirm_password:
+            messages.error(request, "The passwords do not match.")
+
+        # Check that the password is at least 8 characters long
+        if len(password) < 8:
+            messages.error(
+                request, "The password must be at least 8 characters long.")
+
+        # Check that the username and password are alphanumeric
+        if not user_name.isalnum():
+            messages.error(request, "The username must be alphanumeric.")
+        if not password.isalnum():
+            messages.error(request, "The password must be alphanumeric.")
+
+        # If there are no errors, create the user and log them in
+        user = AppUser.objects.create_user(
+            first_name=first_name, last_name=last_name, email=email, username=user_name, password=password)
+        user.save()
+        auth.login(request, user)
+        messages.success(request, "Account created successfully!")
+        messages.success(request, "Please signin to continue.")
+        return redirect('signin')
+    else:
+        return render(request, 'physician_signup.html')
+
+
+def physician_signin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, "Successfully logged in!")
+            return redirect('collect')
+        else:
+            messages.error(request, "Invalid username or password.")
+            return redirect('signin')
+    else:
+        return render(request, 'physician_signin.html')
 
  
 def signout(request):
@@ -88,7 +215,7 @@ def signout(request):
 
  
 def levelselection(request):
-    return render(request, 'levelselection.html')
+    return render(request, 'level_selection.html')
 
  
 def beginner(request):
@@ -141,7 +268,7 @@ def collect(request):
         messages.success(request, "Details collected successfully!")
         return redirect('profile')
     else:
-        return render(request, 'collectdetails.html')
+        return render(request, 'details_collection.html')
 
  
 def profile(request):
@@ -151,7 +278,6 @@ def profile(request):
         return redirect('levelselection')
     
     return render(request, 'profile.html', {'user': request.user})
-
  
 def warrior1_knowledge(request):
     return render(request, 'warrior1-knowledge.html')
