@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collect Details</title>
+    <link rel="stylesheet" href="../static/css/details_collection.css">
+    <link rel="icon" href="../static/Monk-logo.png">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#home" class="anch">
+            <img class="logo" src="../static/My project-2.png" alt="Monk-logo"></a>
+        <div class="watermark1">
+            <a href="#home" class="anch">
+                <img src="../static/watermark/watermark (1).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (2).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (3).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (4).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (6).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (7).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (8).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (5).png" class="watermark2" alt="">
+                <img src="../static/watermark/watermark (9).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (10).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (11).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (12).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (13).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (14).png" class="watermark" alt="">
+                <img src="../static/watermark/watermark (15).png" class="watermark" alt="">
+            </a>
+        </div>
+        <div class="nav">
+            <a class="nav-link" href="#">Home</a>
+            <!-- <a class="nav-link" href="signup.html">SignUp</a> | <a href="signin.html" class="nav-link">SignIn</a> -->
+        </div>
+    </nav>
+    <div class="container">
+        <form action="collect_details" class="details">
+            <h1 class="form-title">Personal Details</h1>
+            <label for="gender" class="label">Gender</label><br>
+            <input type="radio" class="radio" required name="gender">Male
+            <input type="radio" class="radio" required name="gender">Female
+            <input type="radio" class="radio" required name="gender">Others <br>
+            <label for="age" class="label">Age</label><br>
+            <input type="number" class="input" max="100" min="10" required name="age" placeholder="(in years)"><br>
+            <label for="height" class="label">Height</label><br>
+            <input type="text" class="input" name="height" placeholder="(in cm)"><br>
+            <label for="weight" class="label">Weight</label><br>
+            <input type="text" class="input weight" required placeholder="(in kg)"><br>
+            <input type="submit" class="submit" name="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

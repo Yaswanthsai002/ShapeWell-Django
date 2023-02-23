@@ -7,17 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/nav.css">
     <link rel="icon" href="../static/images/Monk-logo.png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Pose Detection</title>
-    <style>
-        .row {
-            border: 2px solid white;
-        }
-    </style>
+    <title>Blog</title>
 </head>
 
-<body class="bg-dark text-white">
+<body>
     <nav class="navbar">
         <a href="#home" class="anch">
             <img class="logo" src="../static/images/My project-2.png" alt="Monk-logo"></a>
@@ -43,20 +36,9 @@
 
         <div class="nav">
             <a class="nav-link" href="level_selection.html">Home</a>
+            <a class="nav-link" href="type_of_user.html">Signup</a>|<a class="nav-link" href="type_of_user.html">Signin</a>
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center mt-3">
-                <h1>Pose Detection</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <img src="{% url 'posedetection' %}" alt="Video Stream">
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

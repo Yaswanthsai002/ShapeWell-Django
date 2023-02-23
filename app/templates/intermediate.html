@@ -3,6 +3,8 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/nav.css">
+    <link rel="icon" href="../static/images/Monk-logo.png">
     <style>
         .card {
             border-radius: 25px;
@@ -31,6 +33,33 @@
 </head>
 
 <body class="bg-dark text-white">
+    <nav class="navbar">
+        <a href="#home" class="anch">
+            <img class="logo" src="../static/images/My project-2.png" alt="Monk-logo"></a>
+        <div class="watermark1">
+            <a href="#home" class="anch">
+                <img src="../static/images/watermark/watermark (1).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (2).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (3).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (4).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (6).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (7).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (8).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (5).png" class="watermark2" alt="">
+                <img src="../static/images/watermark/watermark (9).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (10).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (11).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (12).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (13).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (14).png" class="watermark" alt="">
+                <img src="../static/images/watermark/watermark (15).png" class="watermark" alt="">
+            </a>
+        </div>
+
+        <div class="nav">
+            <a class="nav-link" href="level_selection.html">Home</a>
+        </div>
+    </nav>
     <div class="container-fluid mt-4">
         <h1 class="text-center  text-white mb-4">Intermediate</h1>
         <div class="row justify-content-center">
@@ -38,8 +67,8 @@
                 <div class="card mb-3">
                     <div class="card-body text-center">
                         <h2 class="card-title">Plank</h2>
-                        <img src="../static/images/plank.jpg" alt="Plank Asana Image" width="300px"
-                            height="300px" class="mx-auto d-block">
+                        <img src="../static/images/plank.jpg" alt="Plank Asana Image" width="300px" height="300px"
+                            class="mx-auto d-block">
                         <div class="text-center mt-4">
                             <a href="{% url 'plank-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
                         </div>
@@ -50,8 +79,8 @@
                 <div class="card mb-3">
                     <div class="card-body text-center">
                         <h2 class="card-title">Tree</h2>
-                        <img src="../static/images/treepose.jpg" alt="Tree Asana Image" width="300px"
-                            height="300px" class="mx-auto d-block">
+                        <img src="../static/images/treepose.jpg" alt="Tree Asana Image" width="300px" height="300px"
+                            class="mx-auto d-block">
                         <div class="text-center mt-4">
                             <a href="{% url 'tree-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
                         </div>
