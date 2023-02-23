@@ -13,38 +13,42 @@
   <title>Signup</title>
   <link rel="stylesheet" href="../static/css/nav.css">
   <link rel="icon" href="../static/images/Monk-logo.png">
+  <style>
+    .nav-link {
+      display: inline-block;
+    }
+  </style>
 </head>
 
 <body class="bg-dark text-white">
   <nav class="navbar">
-    <a href="{% url 'blog' %}" class="anch">
-        <img class="logo" src="../static/images/My project-2.png" alt="Monk-logo"></a>
+    <a href="#home" class="anch">
+      <img class="logo" src="../static/images/My project-2.png" alt="Monk-logo"></a>
     <div class="watermark1">
-        <a href="{% url 'blog' %}" class="anch">
-            <!-- <img src="../static/images/watermark/watermark (1).png" class="watermark" alt="">
+      <a href="#home" class="anch">
+        <!-- <img src="../static/images/watermark/watermark (1).png" class="watermark" alt="">
             <img src="../static/images/watermark/watermark (2).png" class="watermark" alt="">
             <img src="../static/images/watermark/watermark (3).png" class="watermark" alt="">
             <img src="../static/images/watermark/watermark (4).png" class="watermark" alt=""> -->
-            <img src="../static/images/watermark/watermark (6).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (7).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (8).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (5).png" class="watermark2" alt="">
-            <img src="../static/images/watermark/watermark (9).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (10).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (11).png" class="watermark" alt="">
-            <!-- <img src="../static/images/watermark/watermark (12).png" class="watermark" alt="">
+        <img src="../static/images/watermark/watermark (6).png" class="watermark" alt="">
+        <img src="../static/images/watermark/watermark (7).png" class="watermark" alt="">
+        <img src="../static/images/watermark/watermark (8).png" class="watermark" alt="">
+        <img src="../static/images/watermark/watermark (5).png" class="watermark2" alt="">
+        <img src="../static/images/watermark/watermark (9).png" class="watermark" alt="">
+        <img src="../static/images/watermark/watermark (10).png" class="watermark" alt="">
+        <img src="../static/images/watermark/watermark (11).png" class="watermark" alt="">
+        <!-- <img src="../static/images/watermark/watermark (12).png" class="watermark" alt="">
             <img src="../static/images/watermark/watermark (13).png" class="watermark" alt="">
             <img src="../static/images/watermark/watermark (14).png" class="watermark" alt="">
             <img src="../static/images/watermark/watermark (15).png" class="watermark" alt=""> -->
-        </a>
+      </a>
     </div>
 
     <div class="nav">
-        <a class="nav-link" href="{% url 'blog' %}">Home</a>
-        <a class="nav-link" href="{% url 'type_of_user' %}">SignUp</a> <a href="{% url 'type_of_user' %}"
-            class="nav-link">SignIn</a>
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="type_of_user.html">SignUp</a> <a href="type_of_user.html" class="nav-link">SignIn</a>
     </div>
-</nav>
+  </nav>
   <div class="container text-center">
     <div class="row align-items-center">
       <h1 class="display-6 mt-5 mb-5">Type of User</h1>
@@ -68,7 +72,8 @@
         <img src="../static/images/Monk-logo.png" alt="Monk-logo" class="rounded" height="300px" width="300px" />
         <a href="#" class="link-primary">
           <h5 class="mt-2 display-6">
-            <a href="{% url 'nutritionist_signin' %}" class="link"><button class="btn btn-primary">Nutritionist</button></a>
+            <a href="{% url 'nutritionist_signin' %}" class="link"><button
+                class="btn btn-primary">Nutritionist</button></a>
           </h5>
         </a>
       </div>
