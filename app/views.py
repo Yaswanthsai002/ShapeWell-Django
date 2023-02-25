@@ -6,17 +6,17 @@ from django.http import StreamingHttpResponse
 from .models import AppUser
 
 
-import cv2
-import mediapipe as mp
-import pyautogui
+# import cv2
+# import mediapipe as mp
+# import pyautogui
 from time import time
 
 # Initializing mediapipe pose class.
-mp_pose = mp.solutions.pose
-mp_holistic = mp.solutions.holistic
+# mp_pose = mp.solutions.pose
+# mp_holistic = mp.solutions.holistic
 
 # Initializing mediapipe drawing class, useful for annotation.
-mp_drawing = mp.solutions.drawing_utils
+# mp_drawing = mp.solutions.drawing_utils
 
 def blog(request):
     return render(request, 'blog.html')
@@ -26,45 +26,39 @@ def type_of_user(request):
 
 def user_signup(request):
     if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        user_name = request.POST['user_name']
+        first_name = request.POST['firstname']
+        last_name = request.POST['lastname']
         email = request.POST['email']
         password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-
-        # Check that the username is unique
-        if AppUser.objects.filter(username=user_name).exists():
-            messages.error(
-                request, "A user with that username already exists.")
+        confirm_password = request.POST['confirmpassword']
 
         # Check that the email is unique
         if AppUser.objects.filter(email=email).exists():
             messages.error(request, "A user with that email already exists.")
 
         # Check that the password and confirm password match
-        if password != confirm_password:
+        elif password != confirm_password:
             messages.error(request, "The passwords do not match.")
 
         # Check that the password is at least 8 characters long
-        if len(password) < 8:
+        elif len(password) < 8:
             messages.error(
                 request, "The password must be at least 8 characters long.")
 
-        # Check that the username and password are alphanumeric
-        if not user_name.isalnum():
-            messages.error(request, "The username must be alphanumeric.")
-        if not password.isalnum():
+        # Check that the password is alphanumeric
+        elif not password.isalnum():
             messages.error(request, "The password must be alphanumeric.")
-
-        # If there are no errors, create the user and log them in
-        user = AppUser.objects.create_user(
-            first_name=first_name, last_name=last_name, email=email, username=user_name, password=password)
-        user.save()
-        auth.login(request, user)
-        messages.success(request, "Account created successfully!")
-        messages.success(request, "Please signin to continue.")
-        return redirect('signin')
+        
+        else:
+            # If there are no errors, create the user and log them in
+            user = AppUser.objects.create_user(
+                first_name=first_name, last_name=last_name, email=email, username=email, password=password)
+            user.save()
+            auth.login(request, user)
+            messages.success(request, "Account created successfully!")
+            messages.success(request, "Please signin to continue.")
+            return redirect('user_signin')
+        return redirect(user_signup)
     else:
         return render(request, 'user_signup.html')
 
@@ -81,131 +75,9 @@ def user_signin(request):
             return redirect('collect')
         else:
             messages.error(request, "Invalid username or password.")
-            return redirect('signin')
+            return redirect('user_signin')
     else:
         return render(request, 'user_signin.html')
-
-def nutritionist_signup(request):
-    if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        user_name = request.POST['user_name']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-
-        # Check that the username is unique
-        if AppUser.objects.filter(username=user_name).exists():
-            messages.error(
-                request, "A user with that username already exists.")
-
-        # Check that the email is unique
-        if AppUser.objects.filter(email=email).exists():
-            messages.error(request, "A user with that email already exists.")
-
-        # Check that the password and confirm password match
-        if password != confirm_password:
-            messages.error(request, "The passwords do not match.")
-
-        # Check that the password is at least 8 characters long
-        if len(password) < 8:
-            messages.error(
-                request, "The password must be at least 8 characters long.")
-
-        # Check that the username and password are alphanumeric
-        if not user_name.isalnum():
-            messages.error(request, "The username must be alphanumeric.")
-        if not password.isalnum():
-            messages.error(request, "The password must be alphanumeric.")
-
-        # If there are no errors, create the user and log them in
-        user = AppUser.objects.create_user(
-            first_name=first_name, last_name=last_name, email=email, username=user_name, password=password)
-        user.save()
-        auth.login(request, user)
-        messages.success(request, "Account created successfully!")
-        messages.success(request, "Please signin to continue.")
-        return redirect('signin')
-    else:
-        return render(request, 'nutritionist_signup.html')
-
-
-def nutritionist_signin(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(username=username, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            messages.success(request, "Successfully logged in!")
-            return redirect('collect')
-        else:
-            messages.error(request, "Invalid username or password.")
-            return redirect('signin')
-    else:
-        return render(request, 'nutritionist_signin.html')
-
-def physician_signup(request):
-    if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        user_name = request.POST['user_name']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-
-        # Check that the username is unique
-        if AppUser.objects.filter(username=user_name).exists():
-            messages.error(
-                request, "A user with that username already exists.")
-
-        # Check that the email is unique
-        if AppUser.objects.filter(email=email).exists():
-            messages.error(request, "A user with that email already exists.")
-
-        # Check that the password and confirm password match
-        if password != confirm_password:
-            messages.error(request, "The passwords do not match.")
-
-        # Check that the password is at least 8 characters long
-        if len(password) < 8:
-            messages.error(
-                request, "The password must be at least 8 characters long.")
-
-        # Check that the username and password are alphanumeric
-        if not user_name.isalnum():
-            messages.error(request, "The username must be alphanumeric.")
-        if not password.isalnum():
-            messages.error(request, "The password must be alphanumeric.")
-
-        # If there are no errors, create the user and log them in
-        user = AppUser.objects.create_user(
-            first_name=first_name, last_name=last_name, email=email, username=user_name, password=password)
-        user.save()
-        auth.login(request, user)
-        messages.success(request, "Account created successfully!")
-        messages.success(request, "Please signin to continue.")
-        return redirect('signin')
-    else:
-        return render(request, 'physician_signup.html')
-
-
-def physician_signin(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(username=username, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            messages.success(request, "Successfully logged in!")
-            return redirect('collect')
-        else:
-            messages.error(request, "Invalid username or password.")
-            return redirect('signin')
-    else:
-        return render(request, 'physician_signin.html')
 
  
 def signout(request):
@@ -322,13 +194,13 @@ def goddess_knowledge(request):
 def gen_frames(request):
 
     # Setup Holistic Pose function for video.
-    pose_video = mp_holistic.Holistic(
-        static_image_mode=False, min_detection_confidence=0.5, model_complexity=2)
+    # pose_video = mp_holistic.Holistic(
+    #     static_image_mode=False, min_detection_confidence=0.5, model_complexity=2)
 
-    screen_width, screen_height = pyautogui.size()
+    # screen_width, screen_height = pyautogui.size()
 
     # Initialize the VideoCapture object to read from the webcam.
-    camera_video = cv2.VideoCapture(0)
+    # camera_video = cv2.VideoCapture(0)
 
     start_time = time()
 
@@ -336,19 +208,19 @@ def gen_frames(request):
     num_frames = 0
 
     # Iterate until the webcam is accessed successfully.
-    while camera_video.isOpened():
+    # while camera_video.isOpened():
 
         # Read a frame.
-        ok, frame = camera_video.read()
+        # ok, frame = camera_video.read()
 
         # Check if frame is not read properly.
-        if not ok:
+        # if not ok:
 
             # Continue to the next iteration to read the next frame and ignore the empty camera frame.
-            continue
+            # continue
 
         # Flip the frame horizontally for natural (selfie-view) visualization.
-        frame = cv2.flip(frame, 1)
+        # frame = cv2.flip(frame, 1)
 
         # Resize the frame.
         # frame = cv2.resize(frame, (screen_width, screen_height))
@@ -363,22 +235,22 @@ def gen_frames(request):
         #     frame, _ = classifyPose(landmarks, frame)
 
         # Increment the number of frames processed.
-        num_frames += 1
+        # num_frames += 1
 
         # Get the elapsed time.
-        elapsed_time = time() - start_time
+        # elapsed_time = time() - start_time
 
         # Calculate the frames per second.
-        fps = num_frames / elapsed_time
+        # fps = num_frames / elapsed_time
 
         # Write the calculated number of frames per second on the frame.
-        cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
-                    cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
+        # cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
+                    # cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
 
-        ret, buffer = cv2.imencode('.jpg', frame)
-        frame = buffer.tobytes()
+        # ret, buffer = cv2.imencode('.jpg', frame)
+        # frame = buffer.tobytes()
         # concat frame one by one and show result
-        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        # yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
  
 def posedetection(request):
