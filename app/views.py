@@ -59,8 +59,8 @@ def user_signup(request):
             user.save()
             auth.login(request, user)
             messages.success(request, "Account created successfully!")
-            messages.success(request, "Please enter your details!")
-            return redirect('collect')
+            messages.success(request, "Please signin to continue!")
+            return redirect('user_signin')
         return redirect(user_signup)
     else:
         return render(request, 'user_signup.html')
@@ -72,11 +72,15 @@ def user_signin(request):
         password = request.POST['password']
         user = auth.authenticate(username=username, password=password)
 
-        if user is not None:
+        if user.age != None or user.height != None:
+            messages.success(request, "Please enter your details.")
+            return redirect('collect')
+        
+        elif user is not None:
             auth.login(request, user)
             messages.success(request, "Successfully logged in!")
-            messages.success(request, "Please enter your details!")
             return redirect('levelselection')
+
         else:
             messages.error(request, "Invalid username or password.")
             return redirect('user_signin')
