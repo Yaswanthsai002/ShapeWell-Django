@@ -1,3 +1,5 @@
+{% load messages %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,23 +7,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signin</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="../static/css/nav.css">
     <link rel="icon" href="../static/images/Monk-logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@200&display=swap" rel="stylesheet">
     <style>
         .row {
-            padding: 5%;
             justify-content: center;
         }
 
         .img-container {
-            max-width: 400px;
-            max-height: 350px;
+            max-width: 500px;
+            max-height: 470px;
         }
 
         .img {
@@ -31,7 +29,7 @@
         }
 
         form {
-            padding: 5%;
+            padding: 3%;
             border: 2px solid red;
         }
 
@@ -61,47 +59,60 @@
 
         <div class="nav">
             <a class="nav-link" href="{% url 'blog' %}">Home</a>
-            <a class="nav-link" href="{% url 'type_of_user' %}">SignUp</a><a href="{% url 'type_of_user' %}"
+            <a class="nav-link" href="{% url 'type_of_user' %}">SignUp</a> <a href="{% url 'type_of_user' %}"
                 class="nav-link">SignIn</a>
         </div>
     </nav>
-    <div class="container mt-5 mb-5">
+    <div class="container my-3">
         {% if messages %}
         {% for message in messages %}
-        {% if message.tags == "error" %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
             {{ message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {% else %}
-        {% endif %}
         {% endfor %}
-        {% endif %}
+        {% endif %}        
         <div class="row no-gutters">
             <div class="col-md-6 col-sm-12 img-container">
                 <img src="../static/images/Monk-logo.png" alt="Monk-logo" class="img">
             </div>
             <div class="col-md-6 col-sm-12 form-container">
-                <form action="{% url 'user_signin' %}" method="post">
+                <form action="{% url 'user_signup' %}" method="post">
                     {% csrf_token %}
-                    <h2 class="text-center">Sign In</h2>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" class="form-control"
-                            placeholder="Enter your username">
+                    <h2 class="text-center">Sign Up</h2>
+                    <div class="form-group" style="display: inline-block; width: 45%;">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" name="firstname" class="form-control"
+                            placeholder="Enter your first name">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display: inline-block; width: 45%; margin-left: 8%;">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" name="lastname" class="form-control"
+                            placeholder="Enter your last name">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="email">Email</label>
+                        <input type="email" id="eamil" name="email" class="form-control"
+                            placeholder="Enter your email id">
+                    </div>
+                    <div class="form-group mb-2">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" class="form-control"
                             placeholder="Enter your password">
                     </div>
-                    <div class="m-3 text-center">
+                    <div class="form-group mb-2">
+                        <label for="password">Confirm Password</label>
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Confirm your password">
+                    </div>
+                    <div class="text-center my-2">
                         Already have an account? <a href="{% url 'user_signin' %}">Signin</a>
                     </div>
 
-                    <button type="submit" class="btn btn-primary d-block m-auto px-4">Sign In</button>
+                    <button type="submit" class="btn btn-primary d-block m-auto px-4">Sign Up</button>
                 </form>
             </div>
         </div>
