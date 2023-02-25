@@ -8,6 +8,13 @@
     <link rel="icon" href="../static/images/Monk-logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+ 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -16,10 +23,6 @@
             <img class="logo" src="../static/images/My project-2.png" alt="Monk-logo"></a>
         <div class="watermark1">
             <a href="{% url 'blog' %}" class="anch">
-                <!-- <img src="../static/images/watermark/watermark (1).png" class="watermark" alt="">
-                <img src="../static/images/watermark/watermark (2).png" class="watermark" alt="">
-                <img src="../static/images/watermark/watermark (3).png" class="watermark" alt="">
-                <img src="../static/images/watermark/watermark (4).png" class="watermark" alt=""> -->
                 <img src="../static/images/watermark/watermark (6).png" class="watermark" alt="">
                 <img src="../static/images/watermark/watermark (7).png" class="watermark" alt="">
                 <img src="../static/images/watermark/watermark (8).png" class="watermark" alt="">
@@ -27,10 +30,6 @@
                 <img src="../static/images/watermark/watermark (9).png" class="watermark" alt="">
                 <img src="../static/images/watermark/watermark (10).png" class="watermark" alt="">
                 <img src="../static/images/watermark/watermark (11).png" class="watermark" alt="">
-                <!-- <img src="../static/images/watermark/watermark (12).png" class="watermark" alt="">
-                <img src="../static/images/watermark/watermark (13).png" class="watermark" alt="">
-                <img src="../static/images/watermark/watermark (14).png" class="watermark" alt="">
-                <img src="../static/images/watermark/watermark (15).png" class="watermark" alt=""> -->
             </a>
         </div>
 
@@ -61,7 +60,6 @@
     <div class="container mt-2">
         <h1 class="text-center">{{ user.first_name }} {{ user.last_name }}'s Profile</h1>
         <ul class="list-group">
-            <li class="list-group-item">Username: {{ user.username }}</li>
             <li class="list-group-item">Email: {{ user.email }}</li>
             {% if user.age %}
             <li class="list-group-item">Age(years): {{ user.age }}</li>
@@ -77,16 +75,6 @@
             {% endif %}
         </ul>
     </div>
-    <!-- Include Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.6/dist/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
