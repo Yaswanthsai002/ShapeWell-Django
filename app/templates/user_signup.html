@@ -55,8 +55,8 @@
         </div>
 
         <div class="nav">
-            <a class="nav-link" href="#">Home</a>
-            <a class="nav-link" href="type_of_user.html">SignUp</a> <a href="{% url 'type_of_user' %}"
+            <a class="nav-link" href="{% url 'blog' %}">Home</a>
+            <a class="nav-link" href="{% url 'type_of_user' %}">SignUp</a> <a href="{% url 'type_of_user' %}"
                 class="nav-link">SignIn</a>
         </div>
     </nav>
@@ -109,7 +109,7 @@
                             placeholder="Confirm your password">
                     </div>
                     <div class="text-center mt-2">
-                        Already have an account? <a href="user_signin.html">Signin</a>
+                        Already have an account? <a href="{% url 'user_signin' %}">Signin</a>
                     </div>
 
                     <button type="submit" class="btn btn-primary d-block m-auto px-4">Sign Up</button>

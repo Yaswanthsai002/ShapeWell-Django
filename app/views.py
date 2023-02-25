@@ -211,7 +211,7 @@ def physician_signin(request):
 def signout(request):
     auth.logout(request)
     messages.success(request, "Successfully logged out!")
-    return redirect('signin')
+    return redirect('blog')
 
  
 def levelselection(request):
