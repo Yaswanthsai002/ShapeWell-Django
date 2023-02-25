@@ -11,10 +11,27 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
- 
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+    <style>
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+            padding: 2%;
+            margin: 1% auto;
+            max-width: 700px;
+        }
+
+        .alert {
+            max-width: 700px;
+            margin: auto;
+            display: block;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -58,7 +75,7 @@
     {% endif %}
     {% endfor %}
     {% endif %}
-    <div class="container mt-2">
+    <div class="container">
         <h1 class="text-center">{{ user.first_name }} {{ user.last_name }}'s Profile</h1>
         <ul class="list-group">
             <li class="list-group-item">Email: {{ user.email }}</li>
