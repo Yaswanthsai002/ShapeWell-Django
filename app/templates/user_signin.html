@@ -62,7 +62,7 @@
         <div class="nav">
             <a class="nav-link" href="{% url 'blog' %}">Home</a>
             <a class="nav-link" href="{% url 'user_signup' %}">SignUp</a> <a href="{% url 'user_signin' %}"
-            class="nav-link">SignIn</a>
+                class="nav-link">SignIn</a>
         </div>
     </nav>
     <div class="container mt-5 mb-5">
@@ -76,6 +76,12 @@
             </button>
         </div>
         {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         {% endif %}
         {% endfor %}
         {% endif %}

@@ -42,10 +42,6 @@
       <img class="logo" src="../static/images/My project-2.png" alt="Monk-logo"></a>
     <div class="watermark1">
       <a href="{% url 'blog' %}" class="anch">
-        <!-- <img src="../static/images/watermark/watermark (1).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (2).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (3).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (4).png" class="watermark" alt=""> -->
         <img src="../static/images/watermark/watermark (6).png" class="watermark" alt="">
         <img src="../static/images/watermark/watermark (7).png" class="watermark" alt="">
         <img src="../static/images/watermark/watermark (8).png" class="watermark" alt="">
@@ -53,10 +49,6 @@
         <img src="../static/images/watermark/watermark (9).png" class="watermark" alt="">
         <img src="../static/images/watermark/watermark (10).png" class="watermark" alt="">
         <img src="../static/images/watermark/watermark (11).png" class="watermark" alt="">
-        <!-- <img src="../static/images/watermark/watermark (12).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (13).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (14).png" class="watermark" alt="">
-            <img src="../static/images/watermark/watermark (15).png" class="watermark" alt=""> -->
       </a>
     </div>
 
@@ -66,6 +58,16 @@
     </div>
   </nav>
   <div class="container-fluid mt-3">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
     <h1 class="text-center  text-white">Level Selection</h1>
     <div class="row justify-content-center">
       <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 mt-3">

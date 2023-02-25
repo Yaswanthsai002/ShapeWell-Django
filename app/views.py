@@ -18,11 +18,14 @@ from time import time
 # Initializing mediapipe drawing class, useful for annotation.
 # mp_drawing = mp.solutions.drawing_utils
 
+
 def blog(request):
     return render(request, 'blog.html')
 
+
 def type_of_user(request):
     return render(request, 'type_of_user.html')
+
 
 def user_signup(request):
     if request.method == 'POST':
@@ -48,7 +51,7 @@ def user_signup(request):
         # Check that the password is alphanumeric
         elif not password.isalnum():
             messages.error(request, "The password must be alphanumeric.")
-        
+
         else:
             # If there are no errors, create the user and log them in
             user = AppUser.objects.create_user(
@@ -56,8 +59,8 @@ def user_signup(request):
             user.save()
             auth.login(request, user)
             messages.success(request, "Account created successfully!")
-            messages.success(request, "Please signin to continue.")
-            return redirect('user_signin')
+            messages.success(request, "Please enter your details!")
+            return redirect('collect')
         return redirect(user_signup)
     else:
         return render(request, 'user_signup.html')
@@ -72,46 +75,40 @@ def user_signin(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, "Successfully logged in!")
-            return redirect('collect')
+            messages.success(request, "Please enter your details!")
+            return redirect('levelselection')
         else:
             messages.error(request, "Invalid username or password.")
             return redirect('user_signin')
     else:
         return render(request, 'user_signin.html')
 
- 
+
 def signout(request):
     auth.logout(request)
     messages.success(request, "Successfully logged out!")
-    return redirect('blog')
+    return redirect('user_signin')
 
- 
+
 def levelselection(request):
     return render(request, 'level_selection.html')
 
- 
+
 def beginner(request):
     return render(request, 'beginner.html')
 
- 
+
 def intermediate(request):
     return render(request, 'intermediate.html')
 
- 
+
 def advanced(request):
     return render(request, 'advanced.html')
 
- 
+
 def collect(request):
-
-    # Check if the user has already entered their age, gender, height, and weight
-    if request.user.age and request.user.gender and request.user.height and request.user.weight:
-        # If the user has already entered their details, redirect to the profile page
-        return redirect('levelselection')
-
     if request.method == 'POST':
         # Get form data
-        messages.success(request, "Please enter your details!")
         age = request.POST['age']
         gender = request.POST['gender']
         height = request.POST['height']
@@ -122,74 +119,81 @@ def collect(request):
             messages.error(request, "Age must be a number.")
             return redirect('collect')
 
-        if not height.isdigit():
+        elif not height.isdigit():
             messages.error(request, "Height must be a number.")
             return redirect('collect')
 
-        if not weight.isdigit():
+        elif not weight.isdigit():
             messages.error(request, "Weight must be a number.")
             return redirect('collect')
 
-        # If there are no errors, save the user's details
-        user = request.user
-        user.age = age
-        user.gender = gender
-        user.height = height
-        user.weight = weight
-        user.save()
-        messages.success(request, "Details collected successfully!")
-        return redirect('profile')
+        else:
+
+            # If there are no errors, save the user's details
+            user = request.user
+            user.age = age
+            user.gender = gender
+            user.height = height
+            user.weight = weight
+            user.save()
+            messages.success(request, "Details collected successfully!")
+            return redirect('profile')
+
+    # Check if the user has already entered their age, gender, height, and weight
+    elif request.user.age and request.user.gender and request.user.height and request.user.weight:
+        # If the user has already entered their details, redirect to the profile page
+        return redirect('levelselection')
     else:
         return render(request, 'details_collection.html')
 
- 
+
 def profile(request):
     if not request.user.age or not request.user.gender or not request.user.height or not request.user.weight:
         return redirect('collect')
     else:
-        return redirect('levelselection')
-    
-    return render(request, 'profile.html', {'user': request.user})
- 
+        return render(request, 'profile.html', {'user': request.user})
+
+
 def warrior1_knowledge(request):
     return render(request, 'warrior1-knowledge.html')
 
- 
+
 def tree_knowledge(request):
     return render(request, 'tree-knowledge.html')
 
- 
+
 def warrior2_knowledge(request):
     return render(request, 'warrior2-knowledge.html')
 
- 
+
 def plank_knowledge(request):
     return render(request, 'plank-knowledge.html')
 
- 
+
 def cobra_knowledge(request):
     return render(request, 'cobra-knowledge.html')
 
- 
+
 def triangle_knowledge(request):
     return render(request, 'triangle-knowledge.html')
 
- 
+
 def downdog_knowledge(request):
     return render(request, 'downdog-knowledge.html')
 
- 
+
 def warrior1_knowledge(request):
     return render(request, 'warrior1-knowledge.html')
 
- 
+
 def warrior3_knowledge(request):
     return render(request, 'warrior3-knowledge.html')
+
 
 def goddess_knowledge(request):
     return render(request, 'goddess-knowledge.html')
 
- 
+
 # Pose Estimation
 def gen_frames(request):
 
@@ -210,52 +214,52 @@ def gen_frames(request):
     # Iterate until the webcam is accessed successfully.
     # while camera_video.isOpened():
 
-        # Read a frame.
-        # ok, frame = camera_video.read()
+    # Read a frame.
+    # ok, frame = camera_video.read()
 
-        # Check if frame is not read properly.
-        # if not ok:
+    # Check if frame is not read properly.
+    # if not ok:
 
-            # Continue to the next iteration to read the next frame and ignore the empty camera frame.
-            # continue
+    # Continue to the next iteration to read the next frame and ignore the empty camera frame.
+    # continue
 
-        # Flip the frame horizontally for natural (selfie-view) visualization.
-        # frame = cv2.flip(frame, 1)
+    # Flip the frame horizontally for natural (selfie-view) visualization.
+    # frame = cv2.flip(frame, 1)
 
-        # Resize the frame.
-        # frame = cv2.resize(frame, (screen_width, screen_height))
+    # Resize the frame.
+    # frame = cv2.resize(frame, (screen_width, screen_height))
 
-        # # Perform Pose landmark detection.
-        # frame, landmarks = detectPose(frame, pose_video)
+    # # Perform Pose landmark detection.
+    # frame, landmarks = detectPose(frame, pose_video)
 
-        # # Check if the landmarks are detected.
-        # if landmarks:
+    # # Check if the landmarks are detected.
+    # if landmarks:
 
-        #     # Perform the Pose Classification.
-        #     frame, _ = classifyPose(landmarks, frame)
+    #     # Perform the Pose Classification.
+    #     frame, _ = classifyPose(landmarks, frame)
 
-        # Increment the number of frames processed.
-        # num_frames += 1
+    # Increment the number of frames processed.
+    # num_frames += 1
 
-        # Get the elapsed time.
-        # elapsed_time = time() - start_time
+    # Get the elapsed time.
+    # elapsed_time = time() - start_time
 
-        # Calculate the frames per second.
-        # fps = num_frames / elapsed_time
+    # Calculate the frames per second.
+    # fps = num_frames / elapsed_time
 
-        # Write the calculated number of frames per second on the frame.
-        # cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
-                    # cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
+    # Write the calculated number of frames per second on the frame.
+    # cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
+    # cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
 
-        # ret, buffer = cv2.imencode('.jpg', frame)
-        # frame = buffer.tobytes()
-        # concat frame one by one and show result
-        # yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+    # ret, buffer = cv2.imencode('.jpg', frame)
+    # frame = buffer.tobytes()
+    # concat frame one by one and show result
+    # yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
- 
+
 def posedetection(request):
     return StreamingHttpResponse(gen_frames(request), content_type="multipart/x-mixed-replace;boundary=frame")
 
- 
+
 def result(request):
     return render(request, 'posedetection.html')
