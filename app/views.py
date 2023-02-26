@@ -4,7 +4,7 @@ from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.http import StreamingHttpResponse
 from .models import AppUser
-
+import re
 
 import cv2
 import mediapipe as mp
@@ -44,14 +44,9 @@ def user_signup(request):
         elif password != confirm_password:
             messages.error(request, "The passwords do not match.")
 
-        # Check that the password is at least 8 characters long
-        elif len(password) < 8:
-            messages.error(
-                request, "The password must be at least 8 characters long.")
-
-        # Check that the password is alphanumeric
-        elif not password.isalnum():
-            messages.error(request, "The password must be alphanumeric.")
+        # Check that the password is at least 8 characters long and contains both numbers, alphabets, and special characters
+        elif len(password) < 8 or not (re.search('[a-zA-Z]', password) and re.search('[0-9]', password) and re.search('[^a-zA-Z0-9]', password)):
+            messages.error(request, "The password must be at least 8 characters long and contain both numbers, alphabets, and special characters.")
 
         else:
             # If there are no errors, create the user and log them in
@@ -62,9 +57,10 @@ def user_signup(request):
             messages.success(request, "Account created successfully!")
             messages.success(request, "Please signin to continue!")
             return redirect('user_signin')
-        return redirect(user_signup)
+        return redirect('user_signup')
     else:
         return render(request, 'user_signup.html')
+
 
 
 def user_signin(request):
@@ -75,7 +71,7 @@ def user_signin(request):
 
         if user is not None:
             auth.login(request, user)
-            if user.age!=None:
+            if user.age != None:
                 messages.success(request, "Successfully logged in!")
                 return redirect('levelselection')
             else:
