@@ -102,7 +102,7 @@
         </div>
     </nav>
     <div class="container mt-5 mb-5">
-        <!-- {% if messages %}
+        {% if messages %}
         {% for message in messages %}
         {% if message.tags == "error" %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -120,14 +120,14 @@
         </div>
         {% endif %}
         {% endfor %}
-        {% endif %} -->
+        {% endif %}
         <div class="row no-gutters">
             <div class="col-md-6 col-sm-12 img-container">
                 <img src="../static/images/Monk-logo.png" alt="Monk-logo" class="img">
             </div>
             <div class="col-md-6 col-sm-12 form-container">
                 <form action="{% url 'user_signin' %}" method="post">
-                    <!-- {% csrf_token %} -->
+                    {% csrf_token %}
                     <h2 class="text-center">Sign In</h2>
                     <div class="form-group">
                         <label for="username">Email ID</label>

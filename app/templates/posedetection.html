@@ -12,14 +12,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
- 
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
     <title>Pose Detection</title>
     <style>
         .row {
-            border: 2px solid white;
+            border: 2px solid black;
+            margin: 1%;
+        }
+
+        .container {
+            max-width: 90%;
+            padding: 0%;
         }
     </style>
 </head>
@@ -46,15 +52,15 @@
             <a class="nav-link" href="{% url 'signout' %}">SignOut</a>
         </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12 text-center mt-3">
+            <div class="col-12 text-center">
                 <h1>Pose Detection</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <img src="{% url 'posedetection' %}" alt="Video Stream">
+                <img src="{% url 'posedetection' %}" alt="Video Stream" class="img-fluid" width="1300px" height="300px">
             </div>
         </div>
     </div>

@@ -77,3 +77,28 @@ body {
     display: block;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
 }
+
+@media only screen and (max-width:600px) {
+
+    .watermark {
+        display: none;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media only screen and (width:768px) {
+    .watermark {
+        display: none;
+    }
+}

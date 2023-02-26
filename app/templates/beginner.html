@@ -1,20 +1,25 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beginner</title>
+  <link rel="stylesheet" href="../static/css/nav.css">
+  <link rel="icon" href="../static/images/Monk-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
-  
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../static/css/nav.css">
-  <link rel="icon" href="../static/images/Monk-logo.png">
   <style>
     .card {
       border-radius: 25px;
+      border: 2px solid black;
     }
 
     .card img {
@@ -27,11 +32,6 @@
       border-radius: 25px;
     }
 
-    .card .btn:hover {
-      color: #007bff;
-      background-color: #fff;
-    }
-
     .card-text,
     .card-title {
       color: black;
@@ -39,6 +39,11 @@
 
     .nav-link {
       display: inline-block;
+    }
+
+    .img,
+    .btn {
+      max-width: 100%;
     }
   </style>
 </head>
@@ -66,39 +71,36 @@
     </div>
   </nav>
   <div class="container-fluid mt-4">
-    <h1 class="text-center  text-white mb-4">Beginner</h1>
+    <h1 class="text-center mb-4">Beginner</h1>
     <div class="row justify-content-center">
-      <div class="col-4 h-100">
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 h-100">
         <div class="card mb-3">
           <div class="card-body text-center">
             <h2 class="card-title">Warrior 1</h2>
-            <img src="../static/images/warrior1.jpg" alt="warrior1 pose Image" width="300px" height="300px"
-              class="mx-auto d-block">
-            <div class="text-center mt-4">
+            <img src="../static/images/warrior1.jpg" alt="warrior1 pose Image" class="mx-auto d-block img">
+            <div class="text-center mt-4 ">
               <a href="{% url 'warrior1-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-4 h-100">
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 h-100">
         <div class="card mb-3">
           <div class="card-body text-center">
             <h2 class="card-title">Warrior2</h2>
-            <img src="../static/images/warrior2.jpg" alt="Warrior2 pose Image" width="300px" height="300px"
-              class="mx-auto d-block">
+            <img src="../static/images/warrior2.jpg" alt="Warrior2 pose Image" class="mx-auto d-block img">
             <div class="text-center mt-4">
               <a href="{% url 'warrior2-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-4 h-100">
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 h-100">
         <div class="card mb-3">
           <div class="card-body text-center">
             <h2 class="card-title">Cobra</h2>
-            <img src="../static/images/cobra.jpg" alt="Cobra Pose Image" width="300px" height="300px"
-              class="mx-auto d-block">
-            <div class="text-center mt-4">
+            <img src="../static/images/cobra.jpg" alt="Cobra Pose Image" class="mx-auto d-block img">
+            <div class="text-center mt-4 ">
               <a href="{% url 'cobra-knowledge' %}" class="btn btn-primary">Get Knowledge</a>
             </div>
           </div>

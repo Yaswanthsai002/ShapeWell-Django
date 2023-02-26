@@ -6,17 +6,17 @@ from django.http import StreamingHttpResponse
 from .models import AppUser
 
 
-# import cv2
-# import mediapipe as mp
-# import pyautogui
+import cv2
+import mediapipe as mp
+import pyautogui
 from time import time
 
 # Initializing mediapipe pose class.
-# mp_pose = mp.solutions.pose
-# mp_holistic = mp.solutions.holistic
+mp_pose = mp.solutions.pose
+mp_holistic = mp.solutions.holistic
 
 # Initializing mediapipe drawing class, useful for annotation.
-# mp_drawing = mp.solutions.drawing_utils
+mp_drawing = mp.solutions.drawing_utils
 
 
 def blog(request):
@@ -34,6 +34,7 @@ def user_signup(request):
         email = request.POST['email']
         password = request.POST['password']
         confirm_password = request.POST['confirmpassword']
+        type_of_user = request.POST['user-type']
 
         # Check that the email is unique
         if AppUser.objects.filter(email=email).exists():
@@ -55,7 +56,7 @@ def user_signup(request):
         else:
             # If there are no errors, create the user and log them in
             user = AppUser.objects.create_user(
-                first_name=first_name, last_name=last_name, email=email, username=email, password=password)
+                first_name=first_name, last_name=last_name, email=email, username=email, password=password, type_of_user=type_of_user)
             user.save()
             auth.login(request, user)
             messages.success(request, "Account created successfully!")
@@ -72,15 +73,11 @@ def user_signin(request):
         password = request.POST['password']
         user = auth.authenticate(username=username, password=password)
 
-        if user.age != None or user.height != None:
+        if user is not None:
+            auth.login(request, user)
             messages.success(request, "Please enter your details.")
             return redirect('collect')
-        
-        elif user is not None:
-            auth.login(request, user)
-            messages.success(request, "Successfully logged in!")
-            return redirect('levelselection')
-
+            
         else:
             messages.error(request, "Invalid username or password.")
             return redirect('user_signin')
@@ -202,13 +199,13 @@ def goddess_knowledge(request):
 def gen_frames(request):
 
     # Setup Holistic Pose function for video.
-    # pose_video = mp_holistic.Holistic(
-    #     static_image_mode=False, min_detection_confidence=0.5, model_complexity=2)
-
-    # screen_width, screen_height = pyautogui.size()
+    pose_video = mp_holistic.Holistic(
+        static_image_mode=False, min_detection_confidence=0.5, model_complexity=2)
+    
+    screen_width, screen_height = pyautogui.size()
 
     # Initialize the VideoCapture object to read from the webcam.
-    # camera_video = cv2.VideoCapture(0)
+    camera_video = cv2.VideoCapture(0)
 
     start_time = time()
 
@@ -216,49 +213,49 @@ def gen_frames(request):
     num_frames = 0
 
     # Iterate until the webcam is accessed successfully.
-    # while camera_video.isOpened():
+    while camera_video.isOpened():
 
     # Read a frame.
-    # ok, frame = camera_video.read()
+        ok, frame = camera_video.read()
 
-    # Check if frame is not read properly.
-    # if not ok:
+        # Check if frame is not read properly.
+        if not ok:
 
-    # Continue to the next iteration to read the next frame and ignore the empty camera frame.
-    # continue
+        # Continue to the next iteration to read the next frame and ignore the empty camera frame.
+            continue
 
-    # Flip the frame horizontally for natural (selfie-view) visualization.
-    # frame = cv2.flip(frame, 1)
+        # Flip the frame horizontally for natural (selfie-view) visualization.
+        frame = cv2.flip(frame, 1)
 
-    # Resize the frame.
-    # frame = cv2.resize(frame, (screen_width, screen_height))
+        # Resize the frame.
+        frame = cv2.resize(frame, (screen_width, screen_height))
 
-    # # Perform Pose landmark detection.
-    # frame, landmarks = detectPose(frame, pose_video)
+        # Perform Pose landmark detection.
+        # frame, landmarks = detectPose(frame, pose_video)
 
-    # # Check if the landmarks are detected.
-    # if landmarks:
+        # Check if the landmarks are detected.
+        # if landmarks:
 
-    #     # Perform the Pose Classification.
-    #     frame, _ = classifyPose(landmarks, frame)
+            # Perform the Pose Classification.
+            # frame, _ = classifyPose(landmarks, frame)
 
-    # Increment the number of frames processed.
-    # num_frames += 1
+        # Increment the number of frames processed.
+        num_frames += 1
 
-    # Get the elapsed time.
-    # elapsed_time = time() - start_time
+        # Get the elapsed time.
+        elapsed_time = time() - start_time
 
-    # Calculate the frames per second.
-    # fps = num_frames / elapsed_time
+        # Calculate the frames per second.
+        fps = num_frames / elapsed_time
 
-    # Write the calculated number of frames per second on the frame.
-    # cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
-    # cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
+        # Write the calculated number of frames per second on the frame.
+        cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
+        cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
 
-    # ret, buffer = cv2.imencode('.jpg', frame)
-    # frame = buffer.tobytes()
-    # concat frame one by one and show result
-    # yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        # concat frame one by one and show result
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 def posedetection(request):

@@ -43,6 +43,28 @@
                 width: 100%;
             }
         }
+
+        @media only screen and (max-width: 700px) {
+            .container {
+                margin-bottom: 10%;
+            }
+
+            .watermark {
+                display: none;
+            }
+
+            .navbar {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-link {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -68,7 +90,7 @@
             <a class="nav-link" href="{% url 'signout' %}">SignOut</a>
         </div>
     </nav>
-    <!-- {% if messages %}
+    {% if messages %}
     {% for message in messages %}
     {% if message.tags == "error" %}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -86,10 +108,10 @@
     </div>
     {% endif %}
     {% endfor %}
-    {% endif %} -->
+    {% endif %}
     <div class="container">
         <form action="{% url 'collect' %}" class="details" method="post">
-            <!-- {% csrf_token %} -->
+            {% csrf_token %}
             <h1 class="form-title">Personal Details</h1>
             <div class="form-group">
                 <label for="gender">Gender</label><br>

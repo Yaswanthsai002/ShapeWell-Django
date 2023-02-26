@@ -1,20 +1,25 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level Selection</title>
+  <link rel="stylesheet" href="../static/css/nav.css">
+  <link rel="icon" href="../static/images/Monk-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
-  
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../static/css/nav.css">
-  <link rel="icon" href="../static/images/Monk-logo.png">
   <style>
     .card {
       border-radius: 25px;
+      border: 2px solid black;
     }
 
     .card img {
@@ -27,11 +32,6 @@
       border-radius: 25px;
     }
 
-    .card .btn:hover {
-      color: #007bff;
-      background-color: #fff;
-    }
-
     .card-text,
     .card-title {
       color: black;
@@ -39,6 +39,11 @@
 
     .nav-link {
       display: inline-block;
+    }
+
+    .img,
+    .btn {
+      max-width: 100%;
     }
   </style>
 </head>
@@ -65,7 +70,7 @@
       <a class="nav-link" href="{% url 'signout' %}">SignOut</a>
     </div>
   </nav>
-  <div class="container-fluid mt-3">
+  <div class="container mt-3 mb-3">
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -76,7 +81,7 @@
     </div>
     {% endfor %}
     {% endif %}
-    <h1 class="text-center  text-white">Level Selection</h1>
+    <h1 class="text-center mt-3">Level Selection</h1>
     <div class="row justify-content-center">
       <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 mt-3">
         <div class="card mt-2">
@@ -106,7 +111,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 mt-3">
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 mt-3 mb-3">
         <div class="card mt-2">
           <div class="card-body text-center">
             <h2 class="card-title">Advanced</h2>
