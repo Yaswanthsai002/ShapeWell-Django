@@ -4,7 +4,7 @@ from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.http import StreamingHttpResponse
 from .models import AppUser
-import re
+import string
 
 import cv2
 import mediapipe as mp
@@ -44,9 +44,30 @@ def user_signup(request):
         elif password != confirm_password:
             messages.error(request, "The passwords do not match.")
 
-        # Check that the password is at least 8 characters long and contains both numbers, alphabets, and special characters
-        elif len(password) < 8 or not (re.search('[a-zA-Z]', password) and re.search('[0-9]', password) and re.search('[^a-zA-Z0-9]', password)):
-            messages.error(request, "The password must be at least 8 characters long and contain both numbers, alphabets, and special characters.")
+        # Check that the password is at least 8 characters long
+        elif len(password) < 8:
+            messages.error(
+                request, "The password must be at least 8 characters long.")
+
+        # Check that the password contains at least one lowercase letter
+        elif not any(char.islower() for char in password):
+            messages.error(
+                request, "The password must contain at least one lowercase letter.")
+
+        # Check that the password contains at least one uppercase letter
+        elif not any(char.isupper() for char in password):
+            messages.error(
+                request, "The password must contain at least one uppercase letter.")
+
+        # Check that the password contains at least one digit
+        elif not any(char.isdigit() for char in password):
+            messages.error(
+                request, "The password must contain at least one digit.")
+
+        # Check that the password contains at least one special character
+        elif not any(char in string.punctuation for char in password):
+            messages.error(
+                request, "The password must contain at least one special character.")
 
         else:
             # If there are no errors, create the user and log them in
@@ -60,7 +81,6 @@ def user_signup(request):
         return redirect('user_signup')
     else:
         return render(request, 'user_signup.html')
-
 
 
 def user_signin(request):
