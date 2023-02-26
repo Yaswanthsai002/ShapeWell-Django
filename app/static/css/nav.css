@@ -67,5 +67,14 @@ body {
 }
 
 .nav-link:hover {
-    text-decoration: underline;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.alert {
+    max-width: 700px;
+    margin: auto;
+    display: block;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
 }
