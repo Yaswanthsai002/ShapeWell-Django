@@ -75,9 +75,13 @@ def user_signin(request):
 
         if user is not None:
             auth.login(request, user)
-            messages.success(request, "Please enter your details.")
-            return redirect('collect')
-            
+            if user.age!=None:
+                messages.success(request, "Successfully logged in!")
+                return redirect('levelselection')
+            else:
+                messages.success(request, "Please enter your details.")
+                return redirect('collect')
+
         else:
             messages.error(request, "Invalid username or password.")
             return redirect('user_signin')
@@ -201,7 +205,7 @@ def gen_frames(request):
     # Setup Holistic Pose function for video.
     pose_video = mp_holistic.Holistic(
         static_image_mode=False, min_detection_confidence=0.5, model_complexity=2)
-    
+
     screen_width, screen_height = pyautogui.size()
 
     # Initialize the VideoCapture object to read from the webcam.
@@ -215,13 +219,13 @@ def gen_frames(request):
     # Iterate until the webcam is accessed successfully.
     while camera_video.isOpened():
 
-    # Read a frame.
+        # Read a frame.
         ok, frame = camera_video.read()
 
         # Check if frame is not read properly.
         if not ok:
 
-        # Continue to the next iteration to read the next frame and ignore the empty camera frame.
+            # Continue to the next iteration to read the next frame and ignore the empty camera frame.
             continue
 
         # Flip the frame horizontally for natural (selfie-view) visualization.
@@ -236,8 +240,8 @@ def gen_frames(request):
         # Check if the landmarks are detected.
         # if landmarks:
 
-            # Perform the Pose Classification.
-            # frame, _ = classifyPose(landmarks, frame)
+        # Perform the Pose Classification.
+        # frame, _ = classifyPose(landmarks, frame)
 
         # Increment the number of frames processed.
         num_frames += 1
@@ -250,7 +254,7 @@ def gen_frames(request):
 
         # Write the calculated number of frames per second on the frame.
         cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
-        cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
+                    cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
 
         ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
