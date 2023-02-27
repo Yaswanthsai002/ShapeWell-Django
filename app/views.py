@@ -4,12 +4,10 @@ from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.http import StreamingHttpResponse
 from .models import AppUser
+from app.pose_estimation import pose_estimation
 import string
-
-import cv2
 import mediapipe as mp
-import pyautogui
-from time import time
+import pickle
 
 # Initializing mediapipe pose class.
 mp_pose = mp.solutions.pose
@@ -18,6 +16,7 @@ mp_holistic = mp.solutions.holistic
 # Initializing mediapipe drawing class, useful for annotation.
 mp_drawing = mp.solutions.drawing_utils
 
+model, label_decoder = pickle.load(open('app/model.pkl', 'rb'))
 
 def blog(request):
     return render(request, 'blog.html')
@@ -48,6 +47,11 @@ def user_signup(request):
         elif len(password) < 8:
             messages.error(
                 request, "The password must be at least 8 characters long.")
+
+        # Check that the password is at most 16 characters long
+        elif len(password) > 16:
+            messages.error(
+                request, "The password must be at most 16 characters long.")
 
         # Check that the password contains at least one lowercase letter
         elif not any(char.islower() for char in password):
@@ -215,71 +219,8 @@ def goddess_knowledge(request):
     return render(request, 'goddess-knowledge.html')
 
 
-# Pose Estimation
-def gen_frames(request):
-
-    # Setup Holistic Pose function for video.
-    pose_video = mp_holistic.Holistic(
-        static_image_mode=False, min_detection_confidence=0.5, model_complexity=2)
-
-    screen_width, screen_height = pyautogui.size()
-
-    # Initialize the VideoCapture object to read from the webcam.
-    camera_video = cv2.VideoCapture(0)
-
-    start_time = time()
-
-    # Initialize a variable to store the number of frames processed.
-    num_frames = 0
-
-    # Iterate until the webcam is accessed successfully.
-    while camera_video.isOpened():
-
-        # Read a frame.
-        ok, frame = camera_video.read()
-
-        # Check if frame is not read properly.
-        if not ok:
-
-            # Continue to the next iteration to read the next frame and ignore the empty camera frame.
-            continue
-
-        # Flip the frame horizontally for natural (selfie-view) visualization.
-        frame = cv2.flip(frame, 1)
-
-        # Resize the frame.
-        frame = cv2.resize(frame, (screen_width, screen_height))
-
-        # Perform Pose landmark detection.
-        # frame, landmarks = detectPose(frame, pose_video)
-
-        # Check if the landmarks are detected.
-        # if landmarks:
-
-        # Perform the Pose Classification.
-        # frame, _ = classifyPose(landmarks, frame)
-
-        # Increment the number of frames processed.
-        num_frames += 1
-
-        # Get the elapsed time.
-        elapsed_time = time() - start_time
-
-        # Calculate the frames per second.
-        fps = num_frames / elapsed_time
-
-        # Write the calculated number of frames per second on the frame.
-        cv2.putText(frame, 'FPS: {}'.format(int(fps)), (0, 100),
-                    cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 3)
-
-        ret, buffer = cv2.imencode('.jpg', frame)
-        frame = buffer.tobytes()
-        # concat frame one by one and show result
-        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-
 def posedetection(request):
-    return StreamingHttpResponse(gen_frames(request), content_type="multipart/x-mixed-replace;boundary=frame")
+    return StreamingHttpResponse(pose_estimation(model, label_decoder, mp_holistic, mp_drawing), content_type="multipart/x-mixed-replace;boundary=frame")
 
 
 def result(request):
