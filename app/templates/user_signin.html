@@ -22,24 +22,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@200&display=swap" rel="stylesheet">
     <style>
         .row {
-            padding: 5%;
             justify-content: center;
+            box-shadow: 0px 0px 25px black;
+            border-radius: 25px;
         }
 
         .img-container {
-            max-width: 400px;
-            max-height: 350px;
+            max-width: 600px;
+            max-height: 500px;
         }
 
         .img {
             float: right;
             height: 100%;
             width: 100%;
+            border-radius: 25px;
+            border-top-right-radius: 0%;
+            border-bottom-right-radius: 0%;
         }
 
         form {
-            padding: 5%;
-            border: 2px solid red;
+            padding: 15% 2%;
+            border-radius: 25px;
         }
 
         .form-container {
@@ -47,7 +51,7 @@
             height: 100%;
         }
 
-        @media only screen and (max-width:600px) {
+        @media only screen and (width<768px) {
 
             .container {
                 margin-bottom: 10%;
@@ -68,12 +72,24 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .img {
+                border-bottom-left-radius: 0%;
+                border-bottom-right-radius: 0%;
+                border-top-right-radius: 25px;
+            }
         }
 
-        @media only screen and (width:768px) {
+        @media only screen and (width>768px) and (width<=1000px) {
             .watermark {
                 display: none;
             }
+
+            /* .img {
+                border-bottom-left-radius: 0%;
+                border-bottom-right-radius: 0%;
+                border-top-right-radius: 25px;
+            } */
         }
     </style>
 
@@ -102,7 +118,7 @@
         </div>
     </nav>
     <div class="container mt-5 mb-5">
-        {% if messages %}
+        <!-- {% if messages %}
         {% for message in messages %}
         {% if message.tags == "error" %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -120,14 +136,14 @@
         </div>
         {% endif %}
         {% endfor %}
-        {% endif %}
+        {% endif %} -->
         <div class="row no-gutters">
             <div class="col-md-6 col-sm-12 img-container">
                 <img src="../static/images/Monk-logo.png" alt="Monk-logo" class="img">
             </div>
             <div class="col-md-6 col-sm-12 form-container">
                 <form action="{% url 'user_signin' %}" method="post">
-                    {% csrf_token %}
+                    <!-- {% csrf_token %} -->
                     <h2 class="text-center">Sign In</h2>
                     <div class="form-group">
                         <label for="username">Email ID</label>
