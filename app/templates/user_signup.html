@@ -145,7 +145,7 @@
         </div>
     </nav>
     <div class="container mt-4">
-        {% if messages %}
+        <!-- {% if messages %}
         {% for message in messages %}
         {% if message.tags == "error" %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -163,14 +163,14 @@
         </div>
         {% endif %}
         {% endfor %}
-        {% endif %}
+        {% endif %} -->
         <div class="row no-gutters">
             <div class="col-md-6 col-sm-12 img-container">
                 <img src="../static/images/Monk-logo.png" alt="Monk-logo" class="img">
             </div>
             <div class="col-md-6 col-sm-12 form-container">
                 <form action="{% url 'user_signup' %}" method="post">
-                    {% csrf_token %}
+                    <!-- {% csrf_token %} -->
                     <h2 class="text-center">Sign Up</h2>
                     <div class="form-group firstname">
                         <label for="firstname">First Name</label>
@@ -208,7 +208,7 @@
                     <div class="form-group mb-2">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" class="form-control"
-                            placeholder="Enter your password" onkeydown="down()">
+                            placeholder="Enter your password">
                     </div>
                     <div class="form-group mb-2">
                         <label for="password">Confirm Password</label>
